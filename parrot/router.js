@@ -9,7 +9,7 @@ router.get('', function (req, res, next) {
   return res.json({ data: parrotService.findAll() })
 })
 router.post('', function (req, res, next) {
-  return parrotService.create()
+  return res.json({ data: parrotService.create() })
 })
 
 export { router as parrotRouter }
