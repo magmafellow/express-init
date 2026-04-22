@@ -1,17 +1,19 @@
-const express = require('express')
+import express from 'express'
+import { parrotRouter } from './parrot/router.js'
+import morgan from 'morgan'
+
 const app = express()
+app.use(express.json())
+app.use(morgan('tiny'))
 
 const myLogger = function (req, res, next) {
   console.log('LOGGED')
   next()
 }
 
-app.use(myLogger)
+app.use('/parrot', parrotRouter)
 
 app.get('/', (req, res) => {
-  // res.send('I am really here!')
-  // res.json({ name: 'Gustav' })
-
   res.setHeader('Content-Type', 'application/json')
   res.send(JSON.stringify({ name: 'Alex' }))
 })
